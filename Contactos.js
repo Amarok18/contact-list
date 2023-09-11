@@ -66,7 +66,7 @@ function AddContact(id, nombres, apellidos, telefono, ciudad, direccion) {
 }
 
 
-AddContact(4, "Harry Antonio", "Maguire Tercero", "+50497498464","Choloma","Centro");
+AddContact(4, "Harry Antonio", "Maguire Tercero", +50497498464,"Choloma","Centro");
 // console.log(JSON.stringify(Contactos));
 
 function deleteContacto(id){
@@ -75,12 +75,20 @@ function deleteContacto(id){
     if(indice!=-1){
         let contactoElim = Contactos.splice(indice,1);
     }else{
-     console.log("El contacto ya fue eliminado");
+     console.log(`El contacto ${contactoElim} ya fue eliminado`);
     }
     
 }
 deleteContacto(1)
 // console.log(JSON.stringify(Contactos));
+function actualizarContacto(id,telefono,ciudad,direccion){
+    const actualizar = Contactos.findIndex(i=>i.id===id);
+    Contactos[actualizar].telefono = telefono;
+    Contactos[actualizar].ubicaciones[0].ciudad = ciudad;
+    Contactos[actualizar].ubicaciones[0].direccion = direccion;
+};
+actualizarContacto(3,50496748585,"SantaRosa","Frente al Parque de los leones");
+console.log(JSON.stringify(Contactos));
 
 function MostrarContactos(){
     for(i=0;i<Contactos.length;i++){
